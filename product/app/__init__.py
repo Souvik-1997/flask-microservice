@@ -1,0 +1,14 @@
+from flask import Flask
+from config import Config
+
+
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+    # Import and register routes
+    from app.controllers.product_controller import product_bp
+
+    app.register_blueprint(product_bp)
+
+    return app
